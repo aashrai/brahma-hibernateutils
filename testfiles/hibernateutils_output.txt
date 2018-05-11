@@ -1,11 +1,11 @@
 package com.zefo.utils;
 
-import com.example.DeliveryDetails;
+import com.example.EntityClass;
 import java.lang.Class;
 
 
 public final class Zefo_HibernateUtils {
   public static final Class[] entityAnnotatedClasses = new Class[] {
-  DeliveryDetails.class
+  EntityClass.class
 
 }

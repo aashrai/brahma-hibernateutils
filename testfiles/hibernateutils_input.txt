@@ -3,7 +3,7 @@ package com.example;
 import javax.persistence.Entity;
 
 @Entity
-public class DeliveryDetails {
+public class EntityClass {
    
     
 

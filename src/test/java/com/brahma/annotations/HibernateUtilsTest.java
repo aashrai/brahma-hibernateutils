@@ -17,7 +17,7 @@ public class HibernateUtilsTest {
     public void hibernateUtilsTest() {
 
         final JavaFileObject input = JavaFileObjects.forSourceString(
-                "com.example.DeliveryDetails",
+                "com.example.EntityClass",
                 Joiner.on('\n').join(Collections.singleton(TestUtils.readLineByLineJava8
                         ("testfiles/hibernateutils_input.txt"))
 
