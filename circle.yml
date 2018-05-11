@@ -1,0 +1,11 @@
+machine:
+  java:
+    version: openjdk8
+
+dependencies:
+  override:
+    - mvn dependency:go-offline -s ci_resources/settings.xml
+
+compile:
+  post:
+    - mvn clean compile
