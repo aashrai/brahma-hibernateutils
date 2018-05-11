@@ -25,7 +25,7 @@ public class HibernateUtilsTest {
         );
 
         final JavaFileObject output = JavaFileObjects.forSourceString(
-                "com.zefo.utils.Zefo_HibernateUtils",
+                "com.brahma.utils.Brahma_HibernateUtils",
                 Joiner.on('\n').join(Collections.singleton(TestUtils.readLineByLineJava8
                         ("testfiles/hibernateutils_output.txt"))
 

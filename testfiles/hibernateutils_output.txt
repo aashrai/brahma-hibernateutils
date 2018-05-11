@@ -1,11 +1,12 @@
-package com.zefo.utils;
+package com.brahma.utils;
 
 import com.example.EntityClass;
 import java.lang.Class;
 
 
-public final class Zefo_HibernateUtils {
+public final class Brahma_HibernateUtils {
   public static final Class[] entityAnnotatedClasses = new Class[] {
   EntityClass.class
+  }
 
 }

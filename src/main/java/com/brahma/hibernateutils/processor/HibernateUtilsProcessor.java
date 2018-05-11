@@ -2,9 +2,17 @@ package com.brahma.hibernateutils.processor;
 
 import com.brahma.hibernateutils.utils.AnnotatedClassUtils;
 import com.google.auto.service.AutoService;
-import com.squareup.javapoet.*;
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.CodeBlock;
+import com.squareup.javapoet.FieldSpec;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.TypeSpec;
 
-import javax.annotation.processing.*;
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Filer;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
+import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
@@ -15,12 +23,24 @@ import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@AutoService(Processor.class)
-public class HibernateUtilsProcessor extends AbstractProcessor {
+/**
+ * Annotation processor here takes Entity classes as in the processing env. Generates a class Brahma_HibernateUtils
+ * Brahma_HibernateUtils has a array of @Entity annotated classes
+ * @author sarthak
+ * @version 1.0
+ */
 
+@AutoService(Processor.class)
+public final class HibernateUtilsProcessor extends AbstractProcessor {
+
+    /**
+     * Util classes provided by the processing environment. A utils class to work with Element classes
+     */
     private Elements elementUtils;
+    /**
+     * Filer you can create files.
+     */
     private Filer filer;
-    private Messager messager;
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
@@ -35,13 +55,22 @@ public class HibernateUtilsProcessor extends AbstractProcessor {
     }
 
     @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+    public boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
         generateEntityArray(roundEnv);
         return false;
     }
 
-    private void generateJavaFile(TypeSpec generatedDaoClass, String packageName) {
+    /**
+     * This method writes the java file.
+     *
+     * @param generatedDaoClass Java class to be generated
+     * @param packageName       Package of the generated class
+     */
+    private void generateJavaFile(final TypeSpec generatedDaoClass, final String packageName) {
         JavaFile javaFile = JavaFile.builder(packageName, generatedDaoClass).build();
+        /**
+         * Writing java class.
+         */
         try {
             javaFile.writeTo(filer);
         } catch (IOException e) {
@@ -49,14 +78,18 @@ public class HibernateUtilsProcessor extends AbstractProcessor {
         }
     }
 
-    private void generateEntityArray(RoundEnvironment roundEnv) {
+    /**
+     * Generates Brahma_HibernateUtils.
+     *
+     * @param roundEnv roundEnv contains all the Element annotated with @Entity
+     */
+    private void generateEntityArray(final RoundEnvironment roundEnv) {
         CodeBlock.Builder builder = CodeBlock.builder().beginControlFlow("new Class[]");
         for (Element annotatedElement : roundEnv.getElementsAnnotatedWith(Entity.class)) {
             TypeElement typeElement = (TypeElement) annotatedElement;
 
             ClassName className = ClassName.get(AnnotatedClassUtils.getQualifiedClassName(typeElement, elementUtils),
-                    AnnotatedClassUtils
-                            .getSimpleName(typeElement));
+                    AnnotatedClassUtils.getSimpleName(typeElement));
             builder.add("$T.class,\n", className);
         }
         FieldSpec entityAnnotatedClasses = FieldSpec.builder(Class[].class, "entityAnnotatedClasses")
@@ -64,18 +97,18 @@ public class HibernateUtilsProcessor extends AbstractProcessor {
                 .initializer(builder.endControlFlow().build())
                 .build();
 
-        TypeSpec Zefo_HibernateUtils = TypeSpec.classBuilder("Zefo_HibernateUtils")
+        TypeSpec brahmaHibernateUtils = TypeSpec.classBuilder("Brahma_HibernateUtils")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addField(entityAnnotatedClasses).build();
 
-        generateJavaFile(Zefo_HibernateUtils, "com.zefo.utils");
+        generateJavaFile(brahmaHibernateUtils, "com.brahma.utils");
     }
+
     @Override
-    public synchronized void init(ProcessingEnvironment processingEnv) {
+    public synchronized void init(final ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
         elementUtils = processingEnv.getElementUtils();
         filer = processingEnv.getFiler();
-        messager = processingEnv.getMessager();
     }
 
 
