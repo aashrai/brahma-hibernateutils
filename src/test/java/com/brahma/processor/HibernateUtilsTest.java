@@ -1,4 +1,4 @@
-package com.brahma.annotations;
+package com.brahma.processor;
 
 import com.brahma.hibernateutils.processor.HibernateUtilsProcessor;
 import com.brahma.utils.TestUtils;
