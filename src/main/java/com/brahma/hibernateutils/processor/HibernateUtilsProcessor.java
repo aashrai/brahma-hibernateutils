@@ -55,7 +55,7 @@ public final class HibernateUtilsProcessor extends AbstractProcessor {
      */
     private Elements elementUtils;
     /**
-     * Write the generated java classes.
+     * Writes the generated java classes.
      */
     private Filer filer;
 
