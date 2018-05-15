@@ -8,7 +8,7 @@ Simplify registering of entity classes with Hibernate by auto generating list of
 1. [JavaPoet](https://github.com/square/javapoet) - for java code generation
 2. Dropwizard for having access to its annotations.
 3. Google compile testing library for testing annoatation processor.
-4. Junit for writing test cases.
+4. Junit for writing unit tests.
 
 ## License
 MIT License
