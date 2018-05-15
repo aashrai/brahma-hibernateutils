@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) 2018 gozefo.
+ *
+ * Licensed under the MIT License;
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://opensource.org/licenses/MIT
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *SOFTWARE
+ */
+
 package com.brahma.hibernateutils.processor;
 
 import com.brahma.hibernateutils.utils.AnnotatedClassUtils;
@@ -7,14 +25,12 @@ import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
-
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
@@ -24,8 +40,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Annotation processor here takes Entity classes as in the processing env. Generates a class Brahma_HibernateUtils
- * Brahma_HibernateUtils has a array of @Entity annotated classes
+ * An {@linkplain javax.annotation.processing.Processor annotation processor} to generate list of Entity classes.
+ *
  * @author sarthak
  * @version 1.0
  */
@@ -34,11 +50,12 @@ import java.util.Set;
 public final class HibernateUtilsProcessor extends AbstractProcessor {
 
     /**
-     * Util classes provided by the processing environment. A utils class to work with Element classes
+     * A utils class to fetch details about the annotated element.
+     * @see {@link com.brahma.hibernateutils.utils.AnnotatedClassUtils}
      */
     private Elements elementUtils;
     /**
-     * Filer you can create files.
+     * Write the generated java classes.
      */
     private Filer filer;
 
@@ -61,13 +78,12 @@ public final class HibernateUtilsProcessor extends AbstractProcessor {
     }
 
     /**
-     * This method writes the java file.
+     * Generates java file with list of Entity Classes. {@linkplain #generateEntityArray(RoundEnvironment)}
      *
-     * @param generatedDaoClass Java class to be generated
-     * @param packageName       Package of the generated class
+     * @param generatedDaoClass Generated java class
      */
-    private void generateJavaFile(final TypeSpec generatedDaoClass, final String packageName) {
-        JavaFile javaFile = JavaFile.builder(packageName, generatedDaoClass).build();
+    private void generateJavaFile(final TypeSpec generatedDaoClass) {
+        JavaFile javaFile = JavaFile.builder("com.brahma.utils", generatedDaoClass).build();
         /**
          * Writing java class.
          */
@@ -79,19 +95,22 @@ public final class HibernateUtilsProcessor extends AbstractProcessor {
     }
 
     /**
-     * Generates Brahma_HibernateUtils.
+     * Processes all the elements annotated with @Entity annotation. The Entity classes are added to a list of classes
      *
-     * @param roundEnv roundEnv contains all the Element annotated with @Entity
+     * @param roundEnv roundEnv contains all the classes/elements of the project
+     * @see "/brahma-hibernateutils/testfiles/hibernateutils_output.txt"
      */
     private void generateEntityArray(final RoundEnvironment roundEnv) {
         CodeBlock.Builder builder = CodeBlock.builder().beginControlFlow("new Class[]");
-        for (Element annotatedElement : roundEnv.getElementsAnnotatedWith(Entity.class)) {
+        roundEnv.getElementsAnnotatedWith(Entity.class).forEach(annotatedElement -> {
             TypeElement typeElement = (TypeElement) annotatedElement;
 
             ClassName className = ClassName.get(AnnotatedClassUtils.getQualifiedClassName(typeElement, elementUtils),
                     AnnotatedClassUtils.getSimpleName(typeElement));
             builder.add("$T.class,\n", className);
-        }
+
+        });
+
         FieldSpec entityAnnotatedClasses = FieldSpec.builder(Class[].class, "entityAnnotatedClasses")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .initializer(builder.endControlFlow().build())
@@ -101,7 +120,7 @@ public final class HibernateUtilsProcessor extends AbstractProcessor {
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addField(entityAnnotatedClasses).build();
 
-        generateJavaFile(brahmaHibernateUtils, "com.brahma.utils");
+        generateJavaFile(brahmaHibernateUtils);
     }
 
     @Override
