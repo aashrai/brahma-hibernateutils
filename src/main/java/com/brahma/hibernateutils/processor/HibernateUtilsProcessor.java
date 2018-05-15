@@ -55,7 +55,7 @@ public final class HibernateUtilsProcessor extends AbstractProcessor {
      */
     private Elements elementUtils;
     /**
-     * Writes the generated java classes.
+     * Writes the generated java class.
      */
     private Filer filer;
 
@@ -95,7 +95,8 @@ public final class HibernateUtilsProcessor extends AbstractProcessor {
     }
 
     /**
-     * Processes all the elements annotated with @Entity annotation. The Entity classes are added to a list of classes
+     * Processes all the elements annotated with @Entity annotation.
+     * The Entity classes are added to a list of classes
      *
      * @param roundEnv roundEnv contains all the classes/elements of the project
      * @see "/brahma-hibernateutils/testfiles/hibernateutils_output.txt"

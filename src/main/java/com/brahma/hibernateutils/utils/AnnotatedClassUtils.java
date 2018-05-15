@@ -23,7 +23,7 @@ import javax.lang.model.util.Elements;
 
 /**
  * Provides Simple and Qualified class names for the annotated elements. Elements are provided for {@linkplain
- * com.brahma.hibernateutils.processor.HibernateUtilsProcessor} #generateEntityArray
+ * com.brahma.hibernateutils.processor.HibernateUtilsProcessor #generateEntityArray}
  *
  * @author sarthak
  * @since 1.0
@@ -36,9 +36,9 @@ public final class AnnotatedClassUtils {
     }
 
     /**
-     * @param typeElement  Represents a class or interface program element.
-     * @param elementUtils Utility methods for operating on program elements
-     * @return Qualified class name (com.brahma.hibernateutils.utils)
+     * @param typeElement  Represents a class or interface annotated element.
+     * @param elementUtils Utility methods for operating on annotated elements
+     * @return Qualified class name is the package name of the the class eg. {com.brahma.hibernateutils.utils}
      */
     public static String getQualifiedClassName(final TypeElement typeElement, final Elements elementUtils) {
         return elementUtils.getPackageOf(typeElement).getQualifiedName().toString();
@@ -46,7 +46,7 @@ public final class AnnotatedClassUtils {
 
     /**
      * @param typeElement Represents a class or interface program element.
-     * @return Simple class name (AnnotatedClassUtils)
+     * @return Simple class name eg. {AnnotatedClassUtils}
      */
     public static String getSimpleName(final TypeElement typeElement) {
         return typeElement.getSimpleName().toString();
