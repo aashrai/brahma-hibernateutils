@@ -21,3 +21,4 @@ hs_err_pid*
 SubProjects/LambdaImageProccessing/.idea/*
 SubProjects/LambdaImageProccessing/target/*
 
+mvn_deploy*
