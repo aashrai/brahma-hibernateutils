@@ -2,41 +2,34 @@
 An annotation processor which auto generates a list of all classes with ```@Entity``` annotation.
 
 ## About 
-Simplify registering of entity classes with Hibernate by auto generating list of classes with ```@Entity``` annotation.
-We don't need to add entity classes to hibernate bundle manually.
+Simplify registration of entity classes in Dropwizard by auto generating a list of classes with ```@Entity``` annotation.
 
 ## Example
 
 ### Entity Class
-Here's a entity class that needs to be registered.
-```
+Here's two entity classes that need to be registered.
+```java
 package com.example.hibernateutils
 
 import javax.persistence.Entity;
 
 @Entity 
-public class HelloWorld {
+public class Vishnu {
     
 }
 ```
-### Generated Code
-The generated code for this entity class looks like this:
-```
-package com.brahma.utils;
+```java
+package com.example.hibernateutils
 
-import com.example.HelloWorld;
-import java.lang.Class;
+import javax.persistence.Entity;
 
-public final class Brahma_HibernateUtils {
-  public static final Class[] entityAnnotatedClasses = new Class[] {
-    HelloWorld.class,
-  }
-  ;
+@Entity 
+public class Shiva {
+    
 }
 ```
-
-### How to add generated list to hibernate bundle
-```
+Adding entity classes to hibernate bundle is as simple as passing the generated array
+```java
  private final HibernateBundle<Config> hibernateBundle =
             new HibernateBundle<Config>(Brahma_HibernateUtils.entityAnnotatedClasses[0],
                     Brahma_HibernateUtils.entityAnnotatedClasses) {
@@ -45,6 +38,23 @@ public final class Brahma_HibernateUtils {
                     return configuration.getDataSourceFactory();
                 }
             };
+```
+
+### Generated Code
+The generated code for this entity class looks like this:
+```java
+package com.brahma.utils;
+
+import com.example.HelloWorld;
+import java.lang.Class;
+
+public final class Brahma_HibernateUtils {
+  public static final Class[] entityAnnotatedClasses = new Class[] {
+    Vishnu.class,
+    Shiva.class
+  }
+  ;
+}
 ```
 
 ## License
