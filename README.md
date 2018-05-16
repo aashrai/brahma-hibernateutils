@@ -1,5 +1,5 @@
 # Bramha-HibernateUtils
-An annotation processor which auto generates a list of all classes with ```@Entity``` annotation.
+An annotation processor which auto generates a list of all classes with [```@Entity```](https://docs.oracle.com/javaee/6/api/javax/persistence/Entity.html) annotation.
 
 ## About 
 Simplify registration of entity classes in Dropwizard by auto generating a list of classes with ```@Entity``` annotation.
