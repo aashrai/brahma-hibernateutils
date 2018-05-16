@@ -5,10 +5,33 @@ An annotation processor which auto generates a list of all classes with ```@Enti
 Simplify registering of entity classes with Hibernate by auto generating list of classes with ```@Entity``` annotation.
 We don't need to add entity classes to hibernate bundle manually.
 
+## Problem
+With hibernate we need to add the entity classes to hibernate bundle. User has to maintain the list of entity classes and also has to add the classes manually. Here's an example of adding entities to hibernate bundle.
+
+```
+private final HibernateBundle<Config> hibernateBundle =
+            new HibernateBundle<Config>(Brahma.class
+                                        Creator.class,
+                                        LifeUniverser.class,
+                                        HelloWorld.class,
+                                        Person.class,
+                                        Car.class,
+                                        House.class
+                                        Vegetable.class
+                          ) {
+
+                public DataSourceFactory getDataSourceFactory(Config configuration) {
+                    return configuration.getDataSourceFactory();
+                }
+            };
+```
+It becomes difficult for the user to maintain all the entities and also the code doesn't look clean. We offer a solution to this problem and which makes a developers life easy.
+
+
 ## Example
 
 ### Entity Class
-Here's a entity class that needs to be registered.
+Here's an entity class that needs to be registered.
 ```
 package com.example.hibernateutils
 
@@ -20,7 +43,7 @@ public class HelloWorld {
 }
 ```
 ### Generated Code
-The generated code for this entity class looks like this:
+The generated code looks like this:
 ```
 package com.brahma.utils;
 
@@ -34,6 +57,7 @@ public final class Brahma_HibernateUtils {
   ;
 }
 ```
+The list will contain all the classes that are annotated with @Entity annotation. Now, their is no need to maintain the list of entity classes.
 
 ### How to add generated list to hibernate bundle
 ```
@@ -46,6 +70,8 @@ public final class Brahma_HibernateUtils {
                 }
             };
 ```
+Adding the generated list to hibernate bundle.
+
 
 ## License
 MIT License
