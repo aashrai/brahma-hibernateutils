@@ -3,12 +3,49 @@ An annotation processor which auto generates a list of all classes with ```@Enti
 
 ## About 
 Simplify registering of entity classes with Hibernate by auto generating list of classes with ```@Entity``` annotation.
+We don't need to add entity classes to hibernate bundle manually.
 
-## Dependencies
-1. [JavaPoet](https://github.com/square/javapoet) - for java code generation
-2. Dropwizard for having access to its annotations.
-3. Google compile testing library for testing annoatation processor.
-4. Junit for writing unit tests.
+## Example
+
+### Entity Class
+Here's a entity class that needs to be registered.
+```
+package com.example.hibernateutils
+
+import javax.persistence.Entity;
+
+@Entity 
+public class HelloWorld {
+    
+}
+```
+### Generated Code
+The generated code for this entity class looks like this:
+```
+package com.brahma.utils;
+
+import com.example.HelloWorld;
+import java.lang.Class;
+
+public final class Brahma_HibernateUtils {
+  public static final Class[] entityAnnotatedClasses = new Class[] {
+    HelloWorld.class,
+  }
+  ;
+}
+```
+
+### How to add generated list to hibernate bundle
+```
+ private final HibernateBundle<Config> hibernateBundle =
+            new HibernateBundle<Config>(Brahma_HibernateUtils.entityAnnotatedClasses[0],
+                    Brahma_HibernateUtils.entityAnnotatedClasses) {
+
+                public DataSourceFactory getDataSourceFactory(Config configuration) {
+                    return configuration.getDataSourceFactory();
+                }
+            };
+```
 
 ## License
 MIT License
