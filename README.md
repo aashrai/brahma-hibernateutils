@@ -2,65 +2,32 @@
 An annotation processor which auto generates a list of all classes with ```@Entity``` annotation.
 
 ## About 
-Simplify registering of entity classes with Hibernate by auto generating list of classes with ```@Entity``` annotation.
-We don't need to add entity classes to hibernate bundle manually.
-
-## Problem
-With hibernate we need to add the entity classes to hibernate bundle. User has to maintain the list of entity classes and also has to add the classes manually. Here's an example of adding entities to hibernate bundle.
-
-```
-private final HibernateBundle<Config> hibernateBundle =
-            new HibernateBundle<Config>(Brahma.class
-                                        Creator.class,
-                                        LifeUniverser.class,
-                                        HelloWorld.class,
-                                        Person.class,
-                                        Car.class,
-                                        House.class
-                                        Vegetable.class
-                          ) {
-
-                public DataSourceFactory getDataSourceFactory(Config configuration) {
-                    return configuration.getDataSourceFactory();
-                }
-            };
-```
-It becomes difficult for the user to maintain all the entities and also the code doesn't look clean. We offer a solution to this problem and which makes a developers life easy.
-
+Simplify registration of entity classes in Dropwizard by auto generating a list of classes with ```@Entity``` annotation.
 
 ## Example
-
-### Entity Class
-Here's an entity class that needs to be registered.
-```
+Here's two entity classes that need to be registered.
+```java
 package com.example.hibernateutils
 
 import javax.persistence.Entity;
 
 @Entity 
-public class HelloWorld {
+public class Vishnu {
     
 }
 ```
-### Generated Code
-The generated code looks like this:
-```
-package com.brahma.utils;
+```java
+package com.example.hibernateutils
 
-import com.example.HelloWorld;
-import java.lang.Class;
+import javax.persistence.Entity;
 
-public final class Brahma_HibernateUtils {
-  public static final Class[] entityAnnotatedClasses = new Class[] {
-    HelloWorld.class,
-  }
-  ;
+@Entity 
+public class Shiva {
+    
 }
 ```
-The list will contain all the classes that are annotated with @Entity annotation. Now, their is no need to maintain the list of entity classes.
-
-### How to add generated list to hibernate bundle
-```
+Adding entity classes to hibernate bundle is as simple as passing the generated array
+```java
  private final HibernateBundle<Config> hibernateBundle =
             new HibernateBundle<Config>(Brahma_HibernateUtils.entityAnnotatedClasses[0],
                     Brahma_HibernateUtils.entityAnnotatedClasses) {
@@ -70,8 +37,24 @@ The list will contain all the classes that are annotated with @Entity annotation
                 }
             };
 ```
-Adding the generated list to hibernate bundle.
 
+### Generated Code
+```java
+package com.brahma.utils;
+
+import com.example.HelloWorld;
+import java.lang.Class;
+
+public final class Brahma_HibernateUtils {
+  public static final Class[] entityAnnotatedClasses = new Class[] {
+    Vishnu.class,
+    Shiva.class
+  }
+  ;
+}
+```
+## Project Brahma
+This repo is a part of project brahma, a suite of annotation processors built with :hearts: by folks at [Gozefo]: https://www.gozefo.com/ enginnering to remove boilerplate in our java projects.
 
 ## License
 MIT License
