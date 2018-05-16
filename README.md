@@ -5,8 +5,6 @@ An annotation processor which auto generates a list of all classes with ```@Enti
 Simplify registration of entity classes in Dropwizard by auto generating a list of classes with ```@Entity``` annotation.
 
 ## Example
-
-### Entity Class
 Here's two entity classes that need to be registered.
 ```java
 package com.example.hibernateutils
@@ -41,7 +39,6 @@ Adding entity classes to hibernate bundle is as simple as passing the generated 
 ```
 
 ### Generated Code
-The generated code for this entity class looks like this:
 ```java
 package com.brahma.utils;
 
@@ -56,6 +53,8 @@ public final class Brahma_HibernateUtils {
   ;
 }
 ```
+## Project Brahma
+This repo is a part of project brahma, a suite of annotation processors built with :hearts: by folks at [Gozefo]: https://www.gozefo.com/ enginnering to remove boilerplate in our java projects.
 
 ## License
 MIT License
