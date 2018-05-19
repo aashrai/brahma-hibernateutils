@@ -1,11 +1,23 @@
-machine:
-  java:
-    version: openjdk8
+version: 2
+jobs:
+  build:
+    environment:
+      - MAVEN_OPTS: -Xmx2096m
 
-dependencies:
-  override:
-    - mvn dependency:go-offline
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
 
-compile:
-  post:
-    - mvn clean compile
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: prestaclient-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline
+
+      - run: mvn package
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: prestaclient-{{ checksum "pom.xml" }}
