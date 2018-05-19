@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   override:
-    - mvn dependency:go-offline -s ci_resources/settings.xml
+    - mvn dependency:go-offline
 
 compile:
   post:
