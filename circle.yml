@@ -11,7 +11,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: prestaclient-{{ checksum "pom.xml" }}
+          key: prestaclient-{{ checksum "pom.xml" }}-v2
 
       - run: mvn dependency:go-offline
 
@@ -29,4 +29,4 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: prestaclient-{{ checksum "pom.xml" }}
+          key: prestaclient-{{ checksum "pom.xml" }}-v2
