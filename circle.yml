@@ -11,7 +11,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: prestaclient-{{ checksum "pom.xml" }}-v2
+          key: hibernate-utils-{{ checksum "pom.xml" }}-v2
 
       - run: mvn dependency:go-offline
 
@@ -26,7 +26,8 @@ jobs:
 
       - store_artifacts:
           path: target/brahma-hibernateutils-1.0-SNAPSHOT.jar
+
       - save_cache:
           paths:
             - ~/.m2
-          key: prestaclient-{{ checksum "pom.xml" }}-v2
+          key: hibernate-utils-{{ checksum "pom.xml" }}-v2
