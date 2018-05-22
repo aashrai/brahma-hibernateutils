@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/gozefo/brahma-hibernateutils/tree/master.svg?style=svg)](https://circleci.com/gh/gozefo/brahma-hibernateutils/tree/master)
+[ ![Download](https://api.bintray.com/packages/gozefo/java-os/brahma-hibernateutils/images/download.svg?version=1.0) ](https://bintray.com/gozefo/java-os/brahma-hibernateutils/1.0/link)
 # Bramha-HibernateUtils
 An annotation processor which auto generates a list of all classes with [```@Entity```](https://docs.oracle.com/javaee/6/api/javax/persistence/Entity.html) annotation.
 
