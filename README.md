@@ -57,6 +57,15 @@ public final class Brahma_HibernateUtils {
 ## Project Brahma
 This repo is a part of project brahma, a suite of annotation processors built with :hearts: by folks at [Gozefo]( https://www.gozefo.com/) enginnering to remove boilerplate in our java projects.
 
+## Download
+```
+<dependency>
+    <groupId>com.zefo.brahma</groupId>
+    <artifactId>brahma-hibernateutils</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
 ## License
 MIT License
 
