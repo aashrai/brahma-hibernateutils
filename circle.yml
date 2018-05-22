@@ -25,7 +25,7 @@ jobs:
           path: target/surefire-reports
 
       - store_artifacts:
-          path: target/prestaclient-1.0-SNAPSHOT.jar
+          path: target/brahma-hibernateutils-1.0-SNAPSHOT.jar
       - save_cache:
           paths:
             - ~/.m2
