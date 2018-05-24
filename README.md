@@ -1,4 +1,6 @@
 [![CircleCI](https://circleci.com/gh/gozefo/brahma-hibernateutils/tree/master.svg?style=svg)](https://circleci.com/gh/gozefo/brahma-hibernateutils/tree/master)
+[ ![Download](https://api.bintray.com/packages/gozefo/java-os/brahma-hibernateutils/images/download.svg?version=1.0) ](https://bintray.com/gozefo/java-os/brahma-hibernateutils/1.0/link)
+[![codecov](https://codecov.io/gh/gozefo/brahma-hibernateutils/branch/master/graph/badge.svg)](https://codecov.io/gh/gozefo/brahma-hibernateutils)
 # Bramha-HibernateUtils
 An annotation processor which auto generates a list of all classes with [```@Entity```](https://docs.oracle.com/javaee/6/api/javax/persistence/Entity.html) annotation.
 
@@ -56,6 +58,15 @@ public final class Brahma_HibernateUtils {
 ```
 ## Project Brahma
 This repo is a part of project brahma, a suite of annotation processors built with :hearts: by folks at [Gozefo]( https://www.gozefo.com/) enginnering to remove boilerplate in our java projects.
+
+## Download
+```xml
+<dependency>
+    <groupId>com.zefo.brahma</groupId>
+    <artifactId>brahma-hibernateutils</artifactId>
+    <version>1.0</version>
+</dependency>
+```
 
 ## License
 MIT License
