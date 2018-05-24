@@ -42,7 +42,7 @@
     <distributionManagement>
         <repository>
             <id>java-os</id>
-            <url>https://api.bintray.com/maven/gozefo/java-os/brahma-hibernateutils/;publish=1;override=1</url>
+            <url>https://api.bintray.com/maven/gozefo/java-os/brahma-hibernateutils/;publish=1</url>
         </repository>
     </distributionManagement>
     <build>
