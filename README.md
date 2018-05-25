@@ -61,10 +61,11 @@ This repo is a part of project brahma, a suite of annotation processors built wi
 
 ## Download
 ```xml
+<!-- https://mvnrepository.com/artifact/com.gozefo.brahma/brahma-hibernateutils -->
 <dependency>
-    <groupId>com.zefo.brahma</groupId>
+    <groupId>com.gozefo.brahma</groupId>
     <artifactId>brahma-hibernateutils</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
