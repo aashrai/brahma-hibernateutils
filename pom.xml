@@ -4,9 +4,38 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zefo.brahma</groupId>
+    <groupId>com.gozefo.brahma</groupId>
     <artifactId>brahma-hibernateutils</artifactId>
-    <version>1.0</version>
+    <version>1.0.1-SNAPSHOT</version>
+    <name>Brahma Hibernate Utils</name>
+    <description>An annotaion processor to keep track of @Entity classes</description>
+    <url>https://github.com/gozefo/brahma-hibernateutils</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Sarthak Sharma</name>
+            <email>sarthak.sharma@gozefo.com</email>
+            <organization>Gozefo</organization>
+            <organizationUrl>http://www.gozefo.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Aashrai Ravooru</name>
+            <email>aashrai@gozefo.com</email>
+            <organization>Gozefo</organization>
+            <organizationUrl>http://www.gozefo.com</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/gozefo/brahma-hibernateutils.git</connection>
+        <developerConnection>scm:git:git://github.com/gozefo/brahma-hibernateutils.git</developerConnection>
+        <url>http://github.com/gozefo/brahma-hibernateutils/tree/master</url>
+    </scm>
+
     <properties>
         <auto-service.version>1.0-rc4</auto-service.version>
     </properties>
@@ -67,6 +96,30 @@
                     </formats>
                     <check/>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

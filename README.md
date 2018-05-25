@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/gozefo/brahma-hibernateutils/tree/master.svg?style=svg)](https://circleci.com/gh/gozefo/brahma-hibernateutils/tree/master)
-[ ![Download](https://api.bintray.com/packages/gozefo/java-os/brahma-hibernateutils/images/download.svg?version=1.0) ](https://bintray.com/gozefo/java-os/brahma-hibernateutils/1.0/link)
+[![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/gozefo/brahma/brahma-hibernateutils/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.gozefo.brahma/brahma-hibernateutils/1.0.1)
 [![codecov](https://codecov.io/gh/gozefo/brahma-hibernateutils/branch/master/graph/badge.svg)](https://codecov.io/gh/gozefo/brahma-hibernateutils)
 # Bramha-HibernateUtils
 An annotation processor which auto generates a list of all classes with [```@Entity```](https://docs.oracle.com/javaee/6/api/javax/persistence/Entity.html) annotation.
@@ -61,10 +61,11 @@ This repo is a part of project brahma, a suite of annotation processors built wi
 
 ## Download
 ```xml
+<!-- https://mvnrepository.com/artifact/com.gozefo.brahma/brahma-hibernateutils -->
 <dependency>
-    <groupId>com.zefo.brahma</groupId>
+    <groupId>com.gozefo.brahma</groupId>
     <artifactId>brahma-hibernateutils</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
